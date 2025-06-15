@@ -1,5 +1,8 @@
+import { UserRole } from '../../database/schemas/user.schema';
+
 export interface JwtPayload {
+  sub: string;
   email: string;
-  firstname: string;
-  lastname: string;
+  username: string;
+  role: UserRole;
 }

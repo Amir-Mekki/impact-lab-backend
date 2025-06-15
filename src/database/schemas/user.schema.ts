@@ -4,20 +4,39 @@ import * as bcrypt from 'bcryptjs';
 
 // Define the User document interface
 export type UserDocument = User & Document;
+export type UserRole = 'admin' | 'user';
+export type Sex = 'H' | 'F';
 
 @Schema()
 export class User {
-  @Prop({ required: true })
-  firstname: string;
+  _id?: string;
 
   @Prop({ required: true })
-  lastname: string;
+  username: string;
 
   @Prop({ required: true, unique: true })
   email: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   password: string;
+
+  @Prop({ required: false, enum: ['admin', 'user'] })
+  role: UserRole;
+
+  @Prop({ required: false, enum: ['H', 'F'] })
+  sex: Sex;
+
+  @Prop({ required: false })
+  phone: string;
+
+  @Prop({ required: false, type: String })
+  resetPasswordToken?: string;
+
+  @Prop({ required: false, type: Date })
+  resetPasswordExpires?: Date;
+
+  @Prop({ required: false })
+  fcmToken?: string;
 
   @Prop({ default: Date.now })
   createdAt: Date;

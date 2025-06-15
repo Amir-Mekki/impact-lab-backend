@@ -1,22 +1,44 @@
-import { IsEmail, IsString, MinLength, IsNotEmpty, Validate } from 'class-validator';
-import { MatchPasswordConstraint } from 'src/common/validators/match-password.validator';
+import {
+  IsEmail,
+  IsString,
+  MinLength,
+  IsOptional,
+  IsNotEmpty,
+  Validate,
+  ValidateIf,
+} from 'class-validator';
+import { MatchPasswordConstraint } from '../../../common/validators/match-password.validator';
+import { Sex, UserRole } from '../../../database/schemas/user.schema';
 
 export class CreateUserDto {
   @IsString()
   @MinLength(3)
-  firstname: string;
-
-  @IsString()
-  @MinLength(3)
-  lastname: string;
+  username: string;
 
   @IsEmail()
   email: string;
 
   @IsString()
+  role: UserRole;
+
+  @IsOptional()
+  @IsString()
+  phone?: string;
+
+  @IsOptional()
+  @IsString()
+  sex?: Sex;
+
+  @IsOptional()
+  @IsString()
+  provider?: string;
+
+  @ValidateIf((o) => !o.provider)
+  @IsString()
   @MinLength(6)
   password: string;
 
+  @ValidateIf((o) => !o.provider)
   @IsString()
   @MinLength(6)
   @IsNotEmpty()

@@ -1,0 +1,16 @@
+<h2>New Booking Submitted</h2>
+<p>Hello Admin,</p>
+
+<p>A new booking has been created by
+  <strong>{{booking.user.firstName}} {{booking.user.lastName}}</strong>
+  for room
+  <strong>{{booking.room.name}}</strong>.</p>
+
+<ul>
+  <li><strong>Start:</strong> {{formatDate booking.startDate}}</li>
+  <li><strong>End:</strong> {{formatDate booking.endDate}}</li>
+</ul>
+
+<p>Please review and take necessary action.</p>
+
+<p>Regards,<br />ImpactLab System</p>

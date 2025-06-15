@@ -1,0 +1,15 @@
+<h2>Booking Canceled</h2>
+<p>Hello Admin,</p>
+
+<p>The following booking has been <strong>canceled</strong>:</p>
+
+<ul>
+  <li><strong>User:</strong> {{booking.user.firstName}} {{booking.user.lastName}}</li>
+  <li><strong>Room:</strong> {{booking.room.name}}</li>
+  <li><strong>Start:</strong> {{formatDate booking.startDate}}</li>
+  <li><strong>End:</strong> {{formatDate booking.endDate}}</li>
+</ul>
+
+<p>No further action is required.</p>
+
+<p>Best,<br />ImpactLab System</p>
